@@ -2,47 +2,225 @@
 " vim:set ts=2 sts=2 sw=2 expandtab:
 autocmd!
 
+" auto install Vunde if not found, for fresh install.
+" @see http://erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
+let iCanHazVundle=0
+let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+    echo "Installing Vundle...\n"
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    let iCanHazVundle=1
+endif
+
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" " alternatively, pass a path where Vundle should install plugins
-" "call vundle#begin('~/some/path/here')
+set nocompatible
+filetype off   
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" keybindings
+let mapleader = ","
+imap jj <esc>
+nmap ; :
+noremap ;; ;
+
+" supertab
+" @see https://github.com/ervandew/supertab
+" @see http://vim.wikia.com/wiki/Omni_completion_popup_menu
+Bundle 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+let g:SuperTabDefaultCompletionType = "context"
+
+Bundle 'tpope/vim-markdown'
+
+" vundle
+" @see https://github.com/gmarik/Vundle.vim
+" let Vundle manage Vundle, required
 "
-" " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" install bundle
+" - launch vim and run :BundleInstall
+" - from command line: vim +BundleInstall +qall
 "
-" " The following are examples of different formats supported.
-" " Keep Plugin commands between vundle#begin/end.
-" " plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-" " plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" " Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" " git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" " The sparkup vim script is in a subdirectory of this repo called vim.
-" " Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" " Avoid a name conflict with L9
-" Plugin 'user/L9', {'name': 'newL9'}
+Bundle 'gmarik/vundle'
+
+" vim-flake8
+" @see https://github.com/nvie/vim-flake8
+" sudo pip install flake8
 "
-" " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" " To ignore plugin indent changes, instead use:
-" "filetype plugin on
-" "
-" " Brief help
-" " :PluginList       - lists configured plugins
-" " :PluginInstall    - installs plugins; append `!` to update or just
-" :PluginUpdate
-" " :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" " :PluginClean      - confirms removal of unused plugins; append `!` to
-" auto-approve removal
-" "
-" " see :h vundle for more details or wiki for FAQ
-" " Put your non-Plugin stuff after this line
+Bundle 'nvie/vim-flake8'
+autocmd BufWritePost *.py call Flake8()
+
+" nerdtree
+" @see https://github.com/scrooloose/nerdtree
+"
+Bundle 'scrooloose/nerdtree.git'
+nmap <leader>nn :NERDTreeToggle<CR>
+
+" vim-airline
+" @see https://github.com/bling/vim-airline
+" @see https://powerline.readthedocs.org/en/latest/installation/linux.html#font-installation
+"
+Bundle 'bling/vim-airline'
+let g:airline_powerline_fonts = 1
+"set guifont=Ubuntu\ Mono\ 12
+set ruler
+set nocompatible   " Disable vi-compatibility
+set laststatus=2   " Always show the statusline
+set encoding=utf-8 " Necessary to show unicode glyphs
+set t_Co=256       " Tell terminal your console support 256 colors
+
+" conque-shell
+" @see https://github.com/oplatek/Conque-Shell
+" Short to lauch several conque term tabs
+"
+Bundle 'oplatek/Conque-Shell'
+nnoremap <leader>bb :ConqueTermTab bash<CR>
+nnoremap <leader>pp :ConqueTermTab psql -U kianmeng<CR>
+nnoremap <leader>mm :ConqueTermTab mysql -u root -p<CR>
+
+" tagbar
+" @see https://github.com/majutsushi/tagbar
+"
+" works for python
+"
+Bundle 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
+
+" add support for markdown files in tagbar.
+" @see http://github.com/jszakmeister/markdown2ctags
+let g:tagbar_type_markdown = {
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : '~/bin/markdown2ctags.py',
+    \ 'ctagsargs' : '-f - --sort=yes',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : '|',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
+
+" groovy
+let g:tagbar_type_groovy = {
+    \ 'ctagstype' : 'groovy',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'c:class',
+        \ 'i:interface',
+        \ 'f:function',
+        \ 'v:variables',
+    \ ]
+\ }
+
+" syntastic
+" @see https://github.com/scrooloose/syntastic
+" @see http://pear.phpmd.org
+"
+" Python
+" sudo apt-get install pylint
+"
+" PHP
+" sudo apt-get install php-pear
+"
+" sudo pear install PHP_CodeSniffer
+"
+" sudo pear channel-discover pear.phpmd.org
+" sudo pear channel-discover pear.pdepend.org
+" sudo pear install pear.pdepend.org/PHP_Depend
+" sudo pear install phpmd/PHP_PMD
+"
+Bundle 'scrooloose/syntastic.git'
+" overwrite by vim-flake8 plugin
+let g:syntastic_python_checkers = ['pylint', 'flake8']
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+
+Bundle 'taglist.vim'
+" taglist
+"
+" the ; search for tags file from current directory till parent directory
+" resursively until it finds a tags file
+"
+" works for php
+"
+" sudo apt-get install exuberant-ctags
+"
+set tags=tags;
+nmap <leader>t :TlistToggle<CR>
+nmap <leader>f <C-]>
+nmap <leader>g <C-T>
+nmap <leader>gt :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+
+" ----
+"  vim-hackernews
+" @see https://github.com/ryanss/vim-hackernews
+Bundle 'ryanss/vim-hackernews'
+" ----
+
+" ----
+" nimrod
+" syntax file for Nim programming language
+" @see https://github.com/zah/nimrod.vim/
+Bundle 'zah/nimrod.vim'
+" ----
+
+" ----
+"  rainbow parentheses
+"  @see https://github.com/kien/rainbow_parentheses.vim
+Bundle 'kien/rainbow_parentheses.vim'
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+" ----
+
+" ----
+" vim bundle for racket lang
+" @see https://github.com/wlangstroth/vim-racket
+Bundle 'wlangstroth/vim-racket'
+" ----
+
+" ----
+" vim bundle for vim-mkdir
+" @see https://github.com/pbrisbin/vim-mkdir
+Bundle 'pbrisbin/vim-mkdir'
+" ----
+
+" ----
+" Fuzzy file, buffer, mru, tag, etc finder.
+" @see https://github.com/kien/ctrlp.vim
+Bundle 'kien/ctrlp.vim'
+nmap <leader>o :CtrlP<CR>
+" ----
+
+" ----
+" Vim plugins for Drupal
+" @see https://www.drupal.org/node/1389448#vundle
+Bundle 'git://drupalcode.org/project/vimrc.git', {'rtp': 'bundle/vim-plugin-for-drupal/'}
+" ----
+
+" ----
+" No more :set paste !!!
+Bundle 'ConradIrwin/vim-bracketed-paste'
+" ----
+"
+" Vim plugin for git
+" see https://github.com/tpope/vim-fugitive
+Bundle 'tpope/vim-fugitive.git'
+
+" Vim plugin for ruby
+" see https://github.com/vim-ruby/vim-ruby
+Bundle 'vim-ruby/vim-ruby'
+
+" Vim plugin for bundler
+" see https://github.com/tpope/vim-bundler.git
+Bundle 'tpope/vim-bundler.git'
+
+" syntax & color scheme
+syntax on
+filetype plugin indent on
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
