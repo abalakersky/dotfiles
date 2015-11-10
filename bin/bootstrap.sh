@@ -51,11 +51,8 @@ fi
 
 echo "Clone the dotfiles repository and create soft links...\n"
 mkdir $HOME/Projects
-cd $HOME/Projects
-git clone https://github.com/abalakersky/dotfiles.git
-cd dottfiles
-./bin/dfm install
-cd -
+git clone https://github.com/abalakersky/dotfiles.git $HOME/Projects/dotfiles
+$HOME/Projects/dotfiles/bin/dfm install
 
 echo "Update font cache...\n"
 fc-cache -vf ~/.fonts
@@ -64,3 +61,4 @@ echo -e "Install all Vim's plugins...\n"
 vim +BundleInstall +qall
 
 echo -e "Done! Enjoy!\n"
+
