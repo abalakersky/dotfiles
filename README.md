@@ -1,4 +1,19 @@
-# Dotfiles
+# Overview
+
+This repo contains my .dotfiles.  
+It contains a utility ([dfm](https://github.com/justone/dfm)) to help with managing and updating your dotfiles.
+
+## Using this repo
+
+Run this bootstrap file to have everything setup:
+
+    $ wget -qO- https://raw.githubusercontent.com/abalakersky/dotfiles/master/bin/bootstrap.sh | bash -
+
+---
+
+## This was forked from https://github.com/justone/dotfiles
+
+Original instructions:
 
 ## Overview
 
