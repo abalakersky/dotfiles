@@ -1,7 +1,7 @@
 [user]
-	email = alex.balakersky@dlt.com
-	name = Alex Balakersky
-	username = abalakersky
+	email = me@domain.com
+	name = My Name
+	username = myusername
 [push]
 	default = matching
 [color]
@@ -10,7 +10,6 @@
 	editor = /usr/bin/vim
 	autocrlf = input
 [gui]
-	recentrepo = /home/abalakersky/Development/aws-scripts
 [http]
 	sslVerify = false
 [alias]
