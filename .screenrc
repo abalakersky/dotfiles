@@ -1,0 +1,46 @@
+# Preconfigured screens
+#screen -t rtorrent rtorrent
+#screen -t irssi irssi
+#screen -t centerim centerim
+#screen -t ncmpc ncmpc -c
+screen -t local 0
+screen -t Local2 bash
+screen -t Local3 bash
+screen -t Serial /dev/ttyUSB0
+#screen -t bash7
+#screen -t bash8
+#screen -t bash9
+
+# Start configurations
+#
+# Cache 30000 lines for scroll back
+defscrollback 30000
+altscreen on
+
+# Enable 256 color ter
+term screen-256color
+
+# make the shell in every window a login shell
+shell -$SHELL
+
+# Allow bold colors - necessary for some reason
+attrcolor b ".I"
+
+# Enables use of shift-PgUp and shift-PgDn
+termcapinfo xterm|xterms|xs|rxvt ti@:te@
+
+# Previous / Next screens
+#bind "^[Od" prev  # change window with ctrl-left
+#bind "^[Oc" next  # change window with ctrl-right
+bind ',' prev
+bind '.' next
+
+#change the hardstatus settings to give an window list at the bottom of the                                                                        
+##screen, with the time and date and with the current window highlighted                                                                            
+hardstatus alwayslastline
+#hardstatus string '%{= kG}%-Lw%{= kW}%50> %n%f* %t%{= kG}%+Lw%< %{= kG}%-=%c:%s%{-}'
+# hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'
+
+# Very nice tabbed colored hardstatus line
+hardstatus string '%{= Kd} %{= Kd}%-w%{= Kr}[%{= KW}%n %t%{= Kr}]%{= Kd}%+w %-= %{KG} %H%{KW}|%{KY}%101`%{KW}|%D %M %d %Y%{= Kc} %C%A%{-}'
+#  

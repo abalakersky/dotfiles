@@ -34,15 +34,9 @@ then
     sudo apt-get install tlp tlp-rdw
     sudo apt-get install tp-smapi-dkms acpi-call-dkms
 
- #   echo -e "Install CJK-related packages...\n"
- #   sudo apt-get install fonts-wqy-* fonts-arphic-* fcitx fcitx-sunpinyin
-
     echo -e "Update Deb packaging details...\n"
     sudo apt-get install apt-file
     sudo apt-file update
-
-    echo "Update font cache...\n"
-    fc-cache -vf ~/.fonts
     
     echo -e "Install latest Ruby and basic gems...\n"
     gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
@@ -62,6 +56,9 @@ git clone https://github.com/abalakersky/dotfiles.git
 cd dottfiles
 ./bin/dfm install
 cd -
+
+echo "Update font cache...\n"
+fc-cache -vf ~/.fonts
 
 echo -e "Install all Vim's plugins...\n"
 vim +BundleInstall +qall
