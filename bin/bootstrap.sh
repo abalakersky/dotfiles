@@ -46,18 +46,17 @@ then
     echo -e "Install essential Python modules...\n"
     sudo apt-get install libpython-dev python-pip
     sudo pip install awesome_print virtualenvwrapper flake8 Glances
+    
+    echo "Clone the dotfiles repository and create soft links...\n"
+    mkdir $HOME/Projects
+    git clone https://github.com/abalakersky/dotfiles.git $HOME/Projects/dotfiles
+    $HOME/Projects/dotfiles/bin/dfm install
+
+    echo "Update font cache...\n"
+    fc-cache -vf ~/.fonts
+
+    echo -e "Install all Vim's plugins...\n"
+    vim +BundleInstall +qall
+
+    echo -e "Done! Enjoy!\n"
 fi
-
-echo "Clone the dotfiles repository and create soft links...\n"
-mkdir $HOME/Projects
-git clone https://github.com/abalakersky/dotfiles.git $HOME/Projects/dotfiles
-$HOME/Projects/dotfiles/bin/dfm install
-
-echo "Update font cache...\n"
-fc-cache -vf ~/.fonts
-
-echo -e "Install all Vim's plugins...\n"
-vim +BundleInstall +qall
-
-echo -e "Done! Enjoy!\n"
-
