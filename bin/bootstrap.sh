@@ -18,9 +18,10 @@ then
     sudo apt-get update && sudo apt-get install -y git git-sh tig meld exuberant-ctags xclip mercurial vim \
         tmux screen source-highlight terminator ack-grep ipython ncdu pydf \
         dstat htop speedometer aria2 subversion most i3-wm i3status i3lock \
-        ttf-dejavu fonts-droid fonts-cantarell youtube-dl \
-        shutter powertop silversearcher-ag pass ppa-purge \
+        ttf-dejavu fonts-droid fonts-cantarell youtube-dl apt-file\
+        shutter powertop silversearcher-ag pass ppa-purge software-properties-common\
         libimage-exiftool-perl ranger atool python-dev zsh zsh-common
+
 
     echo -e "Install Pip...\n"
     sudo apt-get install -y python-pip
@@ -34,9 +35,8 @@ then
     sudo apt-get install tp-smapi-dkms acpi-call-dkms
 
     echo -e "Update Deb packaging details...\n"
-    sudo apt-get install apt-file
     sudo apt-file update
-    
+
     echo -e "Install latest Ruby and basic gems...\n"
     gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
     \curl -sSL https://get.rvm.io | bash -s stable --ruby --auto-dotfiles
@@ -49,7 +49,7 @@ then
 
     echo -e "Installing oh-my-zsh...\n"
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-    
+
     echo "Clone the dotfiles repository and create soft links...\n"
     mkdir $HOME/Projects
     git clone https://github.com/abalakersky/dotfiles.git $HOME/Projects/dotfiles
