@@ -15,7 +15,7 @@ then
 
 elif [[ $(python -mplatform | grep -i ubuntu) ]];
 then
-    sudo apt-get install -y git git-sh tig meld exuberant-ctags xclip mercurial vim \
+    sudo apt-get update && sudo apt-get install -y git git-sh tig meld exuberant-ctags xclip mercurial vim \
         tmux screen source-highlight terminator ack-grep ipython ncdu pydf \
         dstat htop speedometer aria2 subversion most i3-wm i3status i3lock \
         ttf-dejavu fonts-droid fonts-cantarell youtube-dl \
