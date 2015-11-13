@@ -46,6 +46,9 @@ then
     echo -e "Install essential Python modules...\n"
     sudo apt-get install libpython-dev python-pip
     sudo pip install awesome_print virtualenvwrapper flake8 Glances
+
+    echo -e "Installing oh-my-zsh...\n"
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     
     echo "Clone the dotfiles repository and create soft links...\n"
     mkdir $HOME/Projects
