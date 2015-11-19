@@ -85,6 +85,8 @@ source /usr/local/bin/aws_zsh_completer.sh
 alias zshconfig="vi ~/.zshrc"
 alias ohmyzsh="vi ~/.oh-my-zsh"
 
+export GOPATH=$HOME/Development/go_test
+
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 . $HOME/.shellrc.load
