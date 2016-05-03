@@ -26,13 +26,13 @@ noremap ;; ;
 " supertab
 " @see https://github.com/ervandew/supertab
 " @see http://vim.wikia.com/wiki/Omni_completion_popup_menu
-Bundle 'ervandew/supertab'
+Plugin 'ervandew/supertab'
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 let g:SuperTabDefaultCompletionType = "context"
 
 " Vim GO
 " Plugin 'fatih/vim-go'
-Bundle 'fatih/vim-go'
+Plugin 'fatih/vim-go'
 " Commands
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
@@ -64,14 +64,14 @@ let g:go_highlight_build_constraints = 1
 " let g:go_play_open_browser = 0
 
 " NeoComplete
-Bundle 'Shougo/neocomplete.vim'
+Plugin 'Shougo/neocomplete.vim'
 let g:neocomplete#enable_at_startup = 1
 
 " Go-Explorer
-Bundle 'garyburd/go-explorer'
+Plugin 'garyburd/go-explorer'
 
 " Vim-Markdown
-Bundle 'tpope/vim-markdown'
+Plugin 'tpope/vim-markdown'
 
 " vundle
 " @see https://github.com/gmarik/Vundle.vim
@@ -81,22 +81,23 @@ Bundle 'tpope/vim-markdown'
 " - launch vim and run :BundleInstall
 " - from command line: vim +BundleInstall +qall
 "
-Bundle 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
+" Bundle 'gmarik/vundle'
 
 " vim-jason
-Bundle 'elzr/vim-json'
+Plugin 'elzr/vim-json'
 
 " vim-flake8
 " @see https://github.com/nvie/vim-flake8
 " sudo pip install flake8
 "
-Bundle 'nvie/vim-flake8'
+Plugin 'nvie/vim-flake8'
 autocmd BufWritePost *.py call Flake8()
 
 " nerdtree
 " @see https://github.com/scrooloose/nerdtree
 "
-Bundle 'scrooloose/nerdtree.git'
+Plugin 'scrooloose/nerdtree.git'
 " nmap <leader>nn :NERDTreeToggle<CR>
 nmap <F2> :NERDTreeToggle<CR>
 
@@ -104,7 +105,7 @@ nmap <F2> :NERDTreeToggle<CR>
 " @see https://github.com/bling/vim-airline
 " @see https://powerline.readthedocs.org/en/latest/installation/linux.html#font-installation
 "
-Bundle 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 let g:airline_powerline_fonts = 1
 "set guifont=Ubuntu\ Mono\ 12
 set ruler
@@ -117,7 +118,7 @@ set t_Co=256       " Tell terminal your console support 256 colors
 " @see https://github.com/oplatek/Conque-Shell
 " Short to lauch several conque term tabs
 "
-Bundle 'oplatek/Conque-Shell'
+Plugin 'oplatek/Conque-Shell'
 nnoremap <leader>bb :ConqueTermTab bash<CR>
 nnoremap <leader>pp :ConqueTermTab psql -U kianmeng<CR>
 nnoremap <leader>mm :ConqueTermTab mysql -u root -p<CR>
@@ -127,7 +128,7 @@ nnoremap <leader>mm :ConqueTermTab mysql -u root -p<CR>
 "
 " works for python
 "
-Bundle 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 nmap <F8> :TagbarToggle<CR>
 
 " add support for markdown files in tagbar.
@@ -176,12 +177,12 @@ let g:tagbar_type_groovy = {
 " sudo pear install pear.pdepend.org/PHP_Depend
 " sudo pear install phpmd/PHP_PMD
 "
-Bundle 'scrooloose/syntastic.git'
+Plugin 'scrooloose/syntastic.git'
 " overwrite by vim-flake8 plugin
 let g:syntastic_python_checkers = ['pylint', 'flake8']
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 
-Bundle 'taglist.vim'
+Plugin 'taglist.vim'
 " taglist
 "
 " the ; search for tags file from current directory till parent directory
@@ -200,20 +201,20 @@ nmap <leader>gt :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR
 " ----
 "  vim-hackernews
 " @see https://github.com/ryanss/vim-hackernews
-Bundle 'ryanss/vim-hackernews'
+Plugin 'ryanss/vim-hackernews'
 " ----
 
 " ----
 " nimrod
 " syntax file for Nim programming language
 " @see https://github.com/zah/nimrod.vim/
-Bundle 'zah/nimrod.vim'
+Plugin 'zah/nimrod.vim'
 " ----
 
 " ----
 "  rainbow parentheses
 "  @see https://github.com/kien/rainbow_parentheses.vim
-Bundle 'kien/rainbow_parentheses.vim'
+Plugin 'kien/rainbow_parentheses.vim'
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
@@ -223,44 +224,44 @@ au Syntax * RainbowParenthesesLoadBraces
 " ----
 " vim bundle for racket lang
 " @see https://github.com/wlangstroth/vim-racket
-Bundle 'wlangstroth/vim-racket'
+Plugin 'wlangstroth/vim-racket'
 " ----
 
 " ----
 " vim bundle for vim-mkdir
 " @see https://github.com/pbrisbin/vim-mkdir
-Bundle 'pbrisbin/vim-mkdir'
+Plugin 'pbrisbin/vim-mkdir'
 " ----
 
 " ----
 " Fuzzy file, buffer, mru, tag, etc finder.
 " @see https://github.com/kien/ctrlp.vim
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 nmap <leader>o :CtrlP<CR>
 " ----
 
 " ----
 " Vim plugins for Drupal
 " @see https://www.drupal.org/node/1389448#vundle
-Bundle 'git://drupalcode.org/project/vimrc.git', {'rtp': 'bundle/vim-plugin-for-drupal/'}
+Plugin 'git://drupalcode.org/project/vimrc.git', {'rtp': 'bundle/vim-plugin-for-drupal/'}
 " ----
 
 " ----
 " No more :set paste !!!
-Bundle 'ConradIrwin/vim-bracketed-paste'
+Plugin 'ConradIrwin/vim-bracketed-paste'
 " ----
 "
 " Vim plugin for git
 " see https://github.com/tpope/vim-fugitive
-Bundle 'tpope/vim-fugitive.git'
+Plugin 'tpope/vim-fugitive.git'
 
 " Vim plugin for ruby
 " see https://github.com/vim-ruby/vim-ruby
-Bundle 'vim-ruby/vim-ruby'
+Plugin 'vim-ruby/vim-ruby'
 
 " Vim plugin for bundler
 " see https://github.com/tpope/vim-bundler.git
-Bundle 'tpope/vim-bundler.git'
+Plugin 'tpope/vim-bundler.git'
 
 " syntax & color scheme
 syntax on
@@ -383,11 +384,11 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COLOR
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-colorscheme koehler
+" colorscheme koehler
 " :set t_Co=256 " 256 colors
-:set background=dark
+" :set background=dark
 " :color grb256
-
+let g:molokai_original = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " STATUS LINE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
