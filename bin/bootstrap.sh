@@ -4,7 +4,7 @@
 
 echo -e "Install essential packages...\n"
 
-if [[ $(python -mplatform | grep -i fedora) ]];
+if [[ $(lsb_release -is | grep -i fedora) ]];
 then
     sudo yum install -y git tig meld ctags xclip mercurial vim \
         tmux screen source-highlight terminator dstat htop aria2 \
@@ -13,14 +13,14 @@ then
         google-noto-sans-simplified-chinese-fonts google-noto-sans-traditional-chinese-fonts \
         shutter powertop tlp tlp-rdw the_silver_searcher youtube-dl
 
-elif [[ $(python -mplatform | (grep -i ubuntu) || (grep -i LinuxMint)) ]];
+elif [[ $(lsb_release -is | (grep -i ubuntu) || (grep -i linuxmint)) ]];
 then
     sudo apt-get update && sudo apt-get install -y git git-sh tig meld exuberant-ctags xclip mercurial vim \
         tmux screen source-highlight terminator ack-grep ipython ncdu pydf \
         dstat htop speedometer aria2 subversion most i3-wm i3status i3lock \
         ttf-dejavu fonts-droid fonts-cantarell youtube-dl apt-file\
         shutter powertop silversearcher-ag pass ppa-purge software-properties-common\
-        libimage-exiftool-perl ranger atool python-dev zsh zsh-common
+        libimage-exiftool-perl ranger atool python python-dev zsh zsh-common
 
     echo "Clone the dotfiles repository and create soft links...\n"
     mkdir $HOME/Projects
