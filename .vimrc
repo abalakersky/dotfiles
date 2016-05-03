@@ -15,7 +15,7 @@ endif
 set nocompatible
 filetype off   
 set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call vundle#begin()
 
 " keybindings
 let mapleader = ","
@@ -262,6 +262,8 @@ Plugin 'vim-ruby/vim-ruby'
 " Vim plugin for bundler
 " see https://github.com/tpope/vim-bundler.git
 Plugin 'tpope/vim-bundler.git'
+
+call vundle#end()
 
 " syntax & color scheme
 syntax on
