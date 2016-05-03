@@ -22,6 +22,16 @@ then
         shutter powertop silversearcher-ag pass ppa-purge software-properties-common\
         libimage-exiftool-perl ranger atool python-dev zsh zsh-common
 
+    echo "Clone the dotfiles repository and create soft links...\n"
+    mkdir $HOME/Projects
+    mkdir -p $HOME/Development/go-projects
+    git clone https://github.com/abalakersky/dotfiles.git $HOME/Projects/dotfiles
+    $HOME/Projects/dotfiles/bin/dfm install
+
+    echo -e "Installing Ubuntu Make\n"
+    sudo add-apt-repository -y ppa:ubuntu-desktop/ubuntu-make
+    sudo apt-get -y update && sudo apt-get -y install ubuntu-make
+    umake go ~/.local/share/umake/go/go-lang
 
     echo -e "Install Pip...\n"
     sudo apt-get install -y python-pip
@@ -50,16 +60,15 @@ then
 #    echo -e "Installing oh-my-zsh...\n"
 #    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-    echo "Clone the dotfiles repository and create soft links...\n"
-    mkdir $HOME/Projects
-    git clone https://github.com/abalakersky/dotfiles.git $HOME/Projects/dotfiles
-    $HOME/Projects/dotfiles/bin/dfm install
-
     echo "Update font cache...\n"
     fc-cache -vf ~/.fonts
 
     echo -e "Install all Vim's plugins...\n"
-    vim +BundleInstall +qall
+    vim +BundleInstall +GoInstallBinaries +qall
+
+#    echo "Install GO language"
+#    wget -qO- https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz
+#    sudo tar -C /usr/local -xzf go1.6.2.linux-amd64.tar.gz
 
     echo -e "Done! Enjoy!\n"
 fi

@@ -136,6 +136,3 @@ export GO15VENDOREXPERIMENT=1
 export PATH=$PATH:/$GOBIN
 
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-[[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
-
