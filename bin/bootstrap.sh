@@ -13,7 +13,7 @@ then
         google-noto-sans-simplified-chinese-fonts google-noto-sans-traditional-chinese-fonts \
         shutter powertop tlp tlp-rdw the_silver_searcher youtube-dl
 
-elif [[ $(python -mplatform | grep -i ubuntu) ]];
+elif [[ $(python -mplatform | (grep -i ubuntu) || (grep -i LinuxMint)) ]];
 then
     sudo apt-get update && sudo apt-get install -y git git-sh tig meld exuberant-ctags xclip mercurial vim \
         tmux screen source-highlight terminator ack-grep ipython ncdu pydf \
@@ -26,13 +26,13 @@ then
     echo -e "Install Pip...\n"
     sudo apt-get install -y python-pip
     sudo pip install --upgrade pip
-    sudo pip install awscli cli53 s3cmd
+    sudo pip install awscli s3cmd
 
-    echo -e "Installing TLP...\n"
-    sudo add-apt-repository ppa:linrunner/tlp
-    sudo apt-get update
-    sudo apt-get install tlp tlp-rdw
-    sudo apt-get install tp-smapi-dkms acpi-call-dkms
+#    echo -e "Installing TLP...\n"
+#    sudo add-apt-repository ppa:linrunner/tlp
+#    sudo apt-get update
+#    sudo apt-get install tlp tlp-rdw
+#    sudo apt-get install tp-smapi-dkms acpi-call-dkms
 
     echo -e "Update Deb packaging details...\n"
     sudo apt-file update
@@ -43,12 +43,12 @@ then
     source $HOME/.rvm/scripts/rvm
     gem install bundler aws-sdk pry pry-doc pry-git pry-byebug pry-rescue awesome_print
 
-    echo -e "Install essential Python modules...\n"
-    sudo apt-get install libpython-dev python-pip
-    sudo pip install awesome_print virtualenvwrapper flake8 Glances
+#    echo -e "Install essential Python modules...\n"
+#    sudo apt-get install libpython-dev python-pip
+#    sudo pip install awesome_print virtualenvwrapper flake8 Glances
 
-    echo -e "Installing oh-my-zsh...\n"
-    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+#    echo -e "Installing oh-my-zsh...\n"
+#    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
     echo "Clone the dotfiles repository and create soft links...\n"
     mkdir $HOME/Projects
