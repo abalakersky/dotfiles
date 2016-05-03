@@ -15,11 +15,9 @@ then
 
 elif [[ $(lsb_release -is | (grep -i ubuntu) || (grep -i linuxmint)) ]];
 then
-    sudo apt-get update && sudo apt-get install -y git git-sh tig meld exuberant-ctags xclip mercurial vim \
-        tmux screen source-highlight terminator ack-grep ipython ncdu pydf \
-        dstat htop speedometer aria2 subversion most i3-wm i3status i3lock \
-        ttf-dejavu fonts-droid-fallback fonts-cantarell youtube-dl apt-file\
-        shutter powertop silversearcher-ag pass ppa-purge software-properties-common\
+    sudo apt-get update && sudo apt-get install -y git git-sh tig exuberant-ctags mercurial vim \
+        tmux screen ack-grep ncdu pydf dstat htop subversion most apt-file\
+        powertop silversearcher-ag pass ppa-purge software-properties-common\
         libimage-exiftool-perl ranger atool python python-dev zsh zsh-common
 
     echo "Clone the dotfiles repository and create soft links...\n"
@@ -63,11 +61,14 @@ then
     echo "Update font cache...\n"
     fc-cache -vf ~/.fonts
 
-    source .profile
-    source .bashrc
+    source ~/.profile
+    source ~/.bashrc
 
     echo -e "Install all Vim's plugins...\n"
     vim +BundleInstall +qall
+    reset
+    source ~/.profile
+    source ~/.bashrc
     vim +GoInstallBinaries +qall
 
 #    echo "Install GO language"
