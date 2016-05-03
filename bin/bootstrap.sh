@@ -18,7 +18,7 @@ then
     sudo apt-get update && sudo apt-get install -y git git-sh tig meld exuberant-ctags xclip mercurial vim \
         tmux screen source-highlight terminator ack-grep ipython ncdu pydf \
         dstat htop speedometer aria2 subversion most i3-wm i3status i3lock \
-        ttf-dejavu fonts-droid fonts-cantarell youtube-dl apt-file\
+        ttf-dejavu fonts-droid-fallback fonts-cantarell youtube-dl apt-file\
         shutter powertop silversearcher-ag pass ppa-purge software-properties-common\
         libimage-exiftool-perl ranger atool python python-dev zsh zsh-common
 
@@ -63,8 +63,12 @@ then
     echo "Update font cache...\n"
     fc-cache -vf ~/.fonts
 
+    source .profile
+    source .bashrc
+
     echo -e "Install all Vim's plugins...\n"
-    vim +BundleInstall +GoInstallBinaries +qall
+    vim +BundleInstall +qall
+    vim +GoInstallBinaries +qall
 
 #    echo "Install GO language"
 #    wget -qO- https://storage.googleapis.com/golang/go1.6.2.linux-amd64.tar.gz
