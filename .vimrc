@@ -113,7 +113,7 @@ set listchars+=trail:·
 set listchars+=extends:»,precedes:«
 map <silent> <F12> :set invlist<CR>
 
-let g:molokai_original = 1
+" let g:molokai_original = 1
 
 if has('gui_running')
   set guioptions=cMg " console dialogs, do not show menu and toolbar
@@ -499,6 +499,12 @@ Plugin 'vim-ruby/vim-ruby'
 " Vim plugin for bundler
 " see https://github.com/tpope/vim-bundler.git
 Plugin 'tpope/vim-bundler.git'
+
+" Colorscheme
+Plugin 'fatih/molokai'
+colorscheme molokai
+let g:molokai_original = 1
+
 
 filetype plugin indent on      " Automatically detect file types.
 
