@@ -128,7 +128,13 @@ export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"   # mem/file s
 # if this is interactive shell, then bind hh to Ctrl-r
 if [[ $- =~ .*i.* ]]; then bind '"\C-r": "\C-a hh \C-j"'; fi
 
-export GOPATH=$HOME/Development/go_test
+# export GOPATH=$HOME/tools/go
+export GOPATH=$HOME/Development/go-projects
+export godev=$GOPATH/src/github.dlt-engineering.net/
+export GOBIN=$GOPATH/bin
+export GO15VENDOREXPERIMENT=1
+export PATH=$PATH:/$GOBIN
+
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -r $rvm_path/scripts/completion ]] && . $rvm_path/scripts/completion
