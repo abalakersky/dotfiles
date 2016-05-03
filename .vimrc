@@ -1,4 +1,3 @@
-" This is Gary Bernhardt's .vimrc file
 " vim:set ts=2 sts=2 sw=2 expandtab:
 autocmd!
 
@@ -31,6 +30,47 @@ Bundle 'ervandew/supertab'
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 let g:SuperTabDefaultCompletionType = "context"
 
+" Vim GO
+" Plugin 'fatih/vim-go'
+Bundle 'fatih/vim-go'
+" Commands
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>e <Plug>(go-rename)
+" syntax-highlighting for Functions, Methods and Structs
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+" goimports to automatically insert import paths instead of gofmt
+" let g:go_fmt_command = "goimports"
+" vim-go shows errors for the fmt command, to disable it
+" let g:go_fmt_fail_silently = 1
+" Disable auto fmt on save
+" let g:go_fmt_autosave = 0
+" Disable opening browser after posting your snippet to play.golang.org
+" let g:go_play_open_browser = 0
+
+" NeoComplete
+Bundle 'Shougo/neocomplete.vim'
+let g:neocomplete#enable_at_startup = 1
+
+" Go-Explorer
+Bundle 'garyburd/go-explorer'
+
+" Vim-Markdown
 Bundle 'tpope/vim-markdown'
 
 " vundle
@@ -43,6 +83,9 @@ Bundle 'tpope/vim-markdown'
 "
 Bundle 'gmarik/vundle'
 
+" vim-jason
+Bundle 'elzr/vim-json'
+
 " vim-flake8
 " @see https://github.com/nvie/vim-flake8
 " sudo pip install flake8
@@ -54,7 +97,8 @@ autocmd BufWritePost *.py call Flake8()
 " @see https://github.com/scrooloose/nerdtree
 "
 Bundle 'scrooloose/nerdtree.git'
-nmap <leader>nn :NERDTreeToggle<CR>
+" nmap <leader>nn :NERDTreeToggle<CR>
+nmap <F2> :NERDTreeToggle<CR>
 
 " vim-airline
 " @see https://github.com/bling/vim-airline
@@ -742,3 +786,4 @@ function! SelectaIdentifier()
   call SelectaCommand("find * -type f", "-s " . @z, ":e")
 endfunction
 nnoremap <c-g> :call SelectaIdentifier()<cr>
+
