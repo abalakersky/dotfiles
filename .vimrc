@@ -500,6 +500,9 @@ Plugin 'vim-ruby/vim-ruby'
 " see https://github.com/tpope/vim-bundler.git
 Plugin 'tpope/vim-bundler.git'
 
+" VimWiki from http://vimwiki.github.io
+Plugin 'vimwiki/vimwiki'
+
 " Colorscheme
 Plugin 'fatih/molokai'
 colorscheme molokai
