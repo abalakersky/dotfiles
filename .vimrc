@@ -508,6 +508,8 @@ Plugin 'fatih/molokai'
 colorscheme molokai
 let g:molokai_original = 1
 
+" Plugin vim-yaml
+Plugin 'stephpy/vim-yaml'
 
 filetype plugin indent on      " Automatically detect file types.
 
